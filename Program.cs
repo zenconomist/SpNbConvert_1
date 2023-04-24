@@ -27,3 +27,14 @@ foreach (var block in blocks)
     Console.WriteLine($"Block closing line: {block.ClosingLine}");
     Console.WriteLine();
 }
+
+
+
+// Instantiate and use the BlockBuilder
+var blockBuilder = new BlockBuilder();
+var builtBlocks = blockBuilder.BuildBlocks(blocks);
+
+// Instantiate and use the NotebookBuilder
+var notebookBuilder = new NotebookBuilder();
+notebookBuilder.BuildNotebook(inputFilePath, builtBlocks);
+

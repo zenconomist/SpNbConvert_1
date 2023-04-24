@@ -13,3 +13,5 @@
 /Users/kreiszzsolt/work/projects/2023/CSharp/SpNbConvert_1/obj/Debug/net7.0/SpNbConvert_1.pdb
 /Users/kreiszzsolt/work/projects/2023/CSharp/SpNbConvert_1/obj/Debug/net7.0/SpNbConvert_1.genruntimeconfig.cache
 /Users/kreiszzsolt/work/projects/2023/CSharp/SpNbConvert_1/obj/Debug/net7.0/ref/SpNbConvert_1.dll
+/Users/kreiszzsolt/work/projects/2023/CSharp/SpNbConvert_1/bin/Debug/net7.0/Newtonsoft.Json.dll
+/Users/kreiszzsolt/work/projects/2023/CSharp/SpNbConvert_1/obj/Debug/net7.0/SpNbConvert_1.csproj.CopyComplete
