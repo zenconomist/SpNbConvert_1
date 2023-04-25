@@ -7,7 +7,7 @@ public interface IBlockType
     bool IsClosing { get; }
     bool IsSimple { get; }
 
-    List<string> ProcessBlock(string[] lines, int startLine, int endLine);
+   List<string> ProcessBlock(string[] lines, int openingLine, int closingLine, int blockNumber);
 
     Regex GetClosingPattern(Match openingPatternMatch);
     string ProcessLine(string line);

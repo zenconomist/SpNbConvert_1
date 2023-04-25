@@ -8,8 +8,9 @@ public class MarkdownBlockType : BlockType
     {
         Pattern = new Regex(pattern, RegexOptions.Compiled);
     }
-    
-    public override List<string> ProcessBlock(string[] lines, int openingLine, int closingLine)
+
+    /*    
+    public override List<string> ProcessBlock(string[] lines, int openingLine, int closingLine, int blockNumber)
     {
         var blockLines = new List<string>();
 
@@ -27,7 +28,7 @@ public class MarkdownBlockType : BlockType
 
         return blockLines;
     }
-
+    */
 
     public override Regex GetClosingPattern(Match openingPatternMatch)
     {

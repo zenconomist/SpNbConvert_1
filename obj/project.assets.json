@@ -4489,12 +4489,11 @@
       ]
     },
     "FSharp.Core/7.0.0": {
-      "sha512": "xPww0dhsH7o373ZNFY1Y08WRsJJUUzqGk0AIUxxUxSJkWqul0UwCBXg6UmqJX76VdiSvvEXn4SYwX8lYQaZzuQ==",
+      "sha512": "FW8PC00P5V1ihx/F5ulUY00p3XrFelRBwTDyk4DFf99sL+zcHjEdQLo4u83uMmADWKZ2KR9zqAKpvRHeWR+DRQ==",
       "type": "package",
       "path": "fsharp.core/7.0.0",
       "files": [
         ".nupkg.metadata",
-        ".signature.p7s",
         "Icon.png",
         "fsharp.core.7.0.0.nupkg.sha512",
         "fsharp.core.nuspec",
@@ -11821,31 +11820,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\zskreisz\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "/Users/kreiszzsolt/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\zskreisz\\work\\Projects\\2023\\CSharp\\SpNbConvert_1\\SpNbConvert_1.csproj",
+      "projectUniqueName": "/Users/kreiszzsolt/work/projects/2023/CSharp/SpNbConvert_1/SpNbConvert_1.csproj",
       "projectName": "SpNbConvert_1",
-      "projectPath": "C:\\Users\\zskreisz\\work\\Projects\\2023\\CSharp\\SpNbConvert_1\\SpNbConvert_1.csproj",
-      "packagesPath": "C:\\Users\\zskreisz\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\zskreisz\\work\\Projects\\2023\\CSharp\\SpNbConvert_1\\obj\\",
+      "projectPath": "/Users/kreiszzsolt/work/projects/2023/CSharp/SpNbConvert_1/SpNbConvert_1.csproj",
+      "packagesPath": "/Users/kreiszzsolt/.nuget/packages/",
+      "outputPath": "/Users/kreiszzsolt/work/projects/2023/CSharp/SpNbConvert_1/obj/",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\zskreisz\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/Users/kreiszzsolt/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -11893,7 +11885,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/opt/homebrew/Cellar/dotnet/7.0.100/libexec/sdk/7.0.100/RuntimeIdentifierGraph.json"
       }
     }
   }

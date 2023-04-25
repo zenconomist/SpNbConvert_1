@@ -11,10 +11,12 @@ public class CodeBlockType : BlockType
         Pattern = new Regex(pattern, RegexOptions.Compiled);
     }
 
+    /*
     public override List<string> ProcessBlock(string[] lines, int startLine, int endLine)
     {
         return lines.Skip(startLine).Take(endLine - startLine).ToList();
     }
+    */
 
     public override Regex GetClosingPattern(Match openingPatternMatch)
     {

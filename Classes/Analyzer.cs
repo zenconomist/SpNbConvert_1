@@ -23,25 +23,19 @@ class Analyzer
 
                 if (match.Success)
                 {
-                    CurrentBlockNumber = int.Parse(match.Groups[1].Value);
+                    int? blockNumber = null;
 
-                    int closingLine = -1;
-
-                    if (blockType.IsOpening)
+                    // Add this check to prevent parsing an empty string
+                    if (match.Groups.Count > 1 && !string.IsNullOrEmpty(match.Groups[1].Value))
                     {
-                        closingLine = FindClosingLine(lines, blockType, match, i);
+                        blockNumber = int.Parse(match.Groups[1].Value);
                     }
 
-                    var blockLines = blockType.ProcessBlock(lines, i, closingLine);
-                    var block = new Block
-                    {
-                        Name = blockType.Name,
-                        Lines = blockLines,
-                        OpeningLine = i,
-                        ClosingLine = closingLine,
-                    };
+                    int closingLine = FindClosingLine(lines, blockType, match, i);
 
-                    blocks.Add(block);
+                    var blockLines = blockType.ProcessBlock(lines, i, closingLine, blockNumber.GetValueOrDefault());
+
+                    // ...
                 }
             }
         }
@@ -51,6 +45,12 @@ class Analyzer
     private int FindClosingLine(string[] lines, IBlockType blockType, Match openingPatternMatch, int openingLine)
     {
         Regex closingPattern = blockType.GetClosingPattern(openingPatternMatch);
+
+        // Add this check to handle null closing patterns
+        if (closingPattern == null)
+        {
+            return -1;
+        }
 
         for (int i = openingLine + 1; i < lines.Length; i++)
         {
@@ -62,5 +62,6 @@ class Analyzer
 
         return -1;
     }
+
 
 }

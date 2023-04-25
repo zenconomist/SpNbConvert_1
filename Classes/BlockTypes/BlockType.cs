@@ -3,15 +3,15 @@ public abstract class BlockType : IBlockType
 {
     public abstract string Name { get; }
     public abstract Regex Pattern { get; }
-    public BlockModifier? ModifierFunction { get; set; }
-    public int BlockNumber { get; set; } 
+    public BlockModifier ModifierFunction { get; set; }
+    public int? BlockNumber { get; set; } 
     public bool IsOpening => false;
     public bool IsClosing => false;
     public bool IsSimple => true;
 
     public abstract string ProcessLine(string line);
 
-    public virtual List<string> ProcessBlock(string[] lines, int openingLine, int closingLine)
+    public List<string> ProcessBlock(string[] lines, int openingLine, int closingLine, int blockNumber)
     {
         var blockLines = new List<string>();
 
@@ -31,7 +31,7 @@ public abstract class BlockType : IBlockType
         {
             for (int i = 0; i < blockLines.Count; i++)
             {
-                blockLines[i] = ModifierFunction(blockLines[i], BlockNumber);
+                blockLines[i] = ModifierFunction(blockLines[i], blockNumber);
             }
         }
 
