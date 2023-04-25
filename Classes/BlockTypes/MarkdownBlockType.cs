@@ -9,6 +9,11 @@ public class MarkdownBlockType : BlockType
         Pattern = new Regex(pattern, RegexOptions.Compiled);
     }
 
+    public MarkdownBlockType(Regex pattern)
+    {
+        Pattern = pattern;
+    }
+
     /*    
     public override List<string> ProcessBlock(string[] lines, int openingLine, int closingLine, int blockNumber)
     {

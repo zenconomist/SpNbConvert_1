@@ -9,6 +9,8 @@ public abstract class BlockType : IBlockType
     public bool IsClosing => false;
     public bool IsSimple => true;
 
+    public Dictionary<string, Tag> Tags { get; set; } = new Dictionary<string, Tag>();
+
     public abstract string ProcessLine(string line);
     public List<string> ProcessBlock(string[] lines, int openingLine, int closingLine, int blockNumber)
     {
@@ -19,6 +21,7 @@ public abstract class BlockType : IBlockType
             string line = lines[openingLine];
             line = ProcessLine(line);
             line = ApplyBlockModifiers(line, blockNumber);
+
             processedLines.Add(line);
         }
         else
@@ -48,6 +51,16 @@ public abstract class BlockType : IBlockType
         return line;
     }
 
+    // logically important to only clean up after all block modifications were made
+    public string UnTag(string line)
+    {
+        foreach (var tag in Tags.Values)
+        {
+            line = tag.TagCleanUp(line);
+        }
+
+        return line;
+    }
 
     public string Replace(string line, string oldValue, string newValue)
     {

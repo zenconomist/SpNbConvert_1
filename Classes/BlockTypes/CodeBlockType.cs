@@ -11,6 +11,11 @@ public class CodeBlockType : BlockType
         Pattern = new Regex(pattern, RegexOptions.Compiled);
     }
 
+    public CodeBlockType(Regex pattern)
+    {
+        Pattern = pattern;
+    }
+
     /*
     public override List<string> ProcessBlock(string[] lines, int startLine, int endLine)
     {
