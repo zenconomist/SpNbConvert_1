@@ -10,11 +10,12 @@ string inputFilePath = "TestSp2.sql";
 // BlockModifier
 BlockModifier blockToComment = new BlockModifier(BlockModifiers.Comment);
 BlockModifier blockToUnComment = new BlockModifier(BlockModifiers.UnComment);
+var removeDemoWhere = new BlockModifier(BlockModifiers.RemoveDemoWhere);
 
 var blockTypes = new List<IBlockType>
 {
     new MarkdownBlockType(@"^\s*--\s*SignedComment:"),
-    new CodeBlockType(@"^\s*--\s*NewCellBegin_(\d+)") { ModifierFunctions = { blockToComment, blockToUnComment } },
+    new CodeBlockType(@"^\s*--\s*NewCellBegin_(\d+)") { ModifierFunctions = { blockToComment, blockToUnComment, removeDemoWhere } },
     // You can define more block types here
 };
 

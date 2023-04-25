@@ -23,5 +23,15 @@ class BlockModifiers {
         return line;
     }
 
+    public static string RemoveDemoWhere(string line, int blockNumber)
+    {
+        string pattern = @"\s*--\s*DemoWhere:";
+        if (Regex.IsMatch(line, pattern))
+        {
+            line = Regex.Replace(line, pattern, string.Empty);
+        }
+        return line;
+    }
+
 
 }
