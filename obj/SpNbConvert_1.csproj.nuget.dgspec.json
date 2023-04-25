@@ -1,25 +1,31 @@
 {
   "format": 1,
   "restore": {
-    "/Users/kreiszzsolt/work/projects/2023/CSharp/SpNbConvert_1/SpNbConvert_1.csproj": {}
+    "C:\\Users\\zskreisz\\work\\Projects\\2023\\CSharp\\SpNbConvert_1\\SpNbConvert_1.csproj": {}
   },
   "projects": {
-    "/Users/kreiszzsolt/work/projects/2023/CSharp/SpNbConvert_1/SpNbConvert_1.csproj": {
+    "C:\\Users\\zskreisz\\work\\Projects\\2023\\CSharp\\SpNbConvert_1\\SpNbConvert_1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/kreiszzsolt/work/projects/2023/CSharp/SpNbConvert_1/SpNbConvert_1.csproj",
+        "projectUniqueName": "C:\\Users\\zskreisz\\work\\Projects\\2023\\CSharp\\SpNbConvert_1\\SpNbConvert_1.csproj",
         "projectName": "SpNbConvert_1",
-        "projectPath": "/Users/kreiszzsolt/work/projects/2023/CSharp/SpNbConvert_1/SpNbConvert_1.csproj",
-        "packagesPath": "/Users/kreiszzsolt/.nuget/packages/",
-        "outputPath": "/Users/kreiszzsolt/work/projects/2023/CSharp/SpNbConvert_1/obj/",
+        "projectPath": "C:\\Users\\zskreisz\\work\\Projects\\2023\\CSharp\\SpNbConvert_1\\SpNbConvert_1.csproj",
+        "packagesPath": "C:\\Users\\zskreisz\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\zskreisz\\work\\Projects\\2023\\CSharp\\SpNbConvert_1\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "/Users/kreiszzsolt/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\zskreisz\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -38,6 +44,14 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "Microsoft.DotNet.Interactive": {
+              "target": "Package",
+              "version": "[1.0.0-beta.23205.1, )"
+            },
+            "Microsoft.DotNet.Interactive.SqlServer": {
+              "target": "Package",
+              "version": "[1.0.0-beta.23205.1, )"
+            },
             "Newtonsoft.Json": {
               "target": "Package",
               "version": "[13.0.3, )"
@@ -59,7 +73,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/opt/homebrew/Cellar/dotnet/7.0.100/libexec/sdk/7.0.100/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     }
