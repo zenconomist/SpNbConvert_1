@@ -8,28 +8,13 @@
 string inputFilePath = "TestSp2.sql";
 // string outputFilePath = "TestSp2.ipynb";
 // BlockModifier
-BlockModifier uncommentDemoWhereInBlock = (line, blockNumber) =>
-{
-    Match match = Regex.Match(line, @"--\s*NewBlockToComment_(\d+)");
-    if (match.Success)
-    {
-        int commentBlockNumber = int.Parse(match.Groups[1].Value);
-
-        // Uncomment the line only if it belongs to the corresponding block
-        if (commentBlockNumber == blockNumber)
-        {
-            // Uncomment the line by removing the comment characters "--"
-            return Regex.Replace(line.Substring(0, match.Index), @"^\s*--\s*|\s*--\s*$", "");
-        }
-    }
-
-    return line;
-};
+BlockModifier blockToComment = new BlockModifier(BlockModifiers.Comment);
+BlockModifier blockToUnComment = new BlockModifier(BlockModifiers.UnComment);
 
 var blockTypes = new List<IBlockType>
 {
     new MarkdownBlockType(@"^\s*--\s*SignedComment:"),
-    new CodeBlockType(@"^\s*--\s*NewCellBegin_(\d+)") { ModifierFunction = uncommentDemoWhereInBlock },
+    new CodeBlockType(@"^\s*--\s*NewCellBegin_(\d+)") { ModifierFunctions = { blockToComment, blockToUnComment } },
     // You can define more block types here
 };
 

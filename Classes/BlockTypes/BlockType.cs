@@ -3,7 +3,7 @@ public abstract class BlockType : IBlockType
 {
     public abstract string Name { get; }
     public abstract Regex Pattern { get; }
-    public BlockModifier ModifierFunction { get; set; }
+    public List<BlockModifier> ModifierFunctions { get; set; } = new List<BlockModifier>(); // Change to a list of BlockModifier
     public int? BlockNumber { get; set; } 
     public bool IsOpening => false;
     public bool IsClosing => false;
@@ -27,13 +27,18 @@ public abstract class BlockType : IBlockType
             }
         }
 
-        if (ModifierFunction != null)
+        // In both the MarkdownBlockType and CodeBlockType classes
+        if (ModifierFunctions != null)
         {
-            for (int i = 0; i < blockLines.Count; i++)
+            foreach (var modifier in ModifierFunctions)
             {
-                blockLines[i] = ModifierFunction(blockLines[i], blockNumber);
+                for (int i = openingLine + 1; i <= closingLine; i++)
+                {
+                    blockLines[i] = modifier(blockLines[i], blockNumber);
+                }
             }
         }
+
 
         return blockLines;
     }
