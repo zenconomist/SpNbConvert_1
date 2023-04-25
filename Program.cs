@@ -15,7 +15,11 @@ var removeDemoWhere = new BlockModifier(BlockModifiers.RemoveDemoWhere);
 var blockTypes = new List<IBlockType>
 {
     new MarkdownBlockType(@"^\s*--\s*SignedComment:"),
-    new CodeBlockType(@"^\s*--\s*NewCellBegin_(\d+)") { ModifierFunctions = { blockToComment, blockToUnComment, removeDemoWhere } },
+    new CodeBlockType(@"^\s*--\s*NewCellBegin_(\d+)") { ModifierFunctions = { blockToComment
+        , blockToUnComment
+        , removeDemoWhere 
+        } 
+    },
     // You can define more block types here
 };
 

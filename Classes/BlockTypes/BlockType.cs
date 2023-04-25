@@ -10,29 +10,44 @@ public abstract class BlockType : IBlockType
     public bool IsSimple => true;
 
     public abstract string ProcessLine(string line);
-
-    // Add the general ProcessBlock method
-    public virtual List<string> ProcessBlock(string[] lines, int openingLine, int closingLine, int blockNumber)
+    public List<string> ProcessBlock(string[] lines, int openingLine, int closingLine, int blockNumber)
     {
         var processedLines = new List<string>();
 
-        for (int i = openingLine; i <= closingLine; i++)
+        if (closingLine == -1)
         {
-            string line = lines[i];
-
-            if (ModifierFunctions != null)
-            {
-                foreach (var modifier in ModifierFunctions)
-                {
-                    line = modifier(line, blockNumber);
-                }
-            }
-
+            string line = lines[openingLine];
+            line = ProcessLine(line);
+            line = ApplyBlockModifiers(line, blockNumber);
             processedLines.Add(line);
+        }
+        else
+        {
+            for (int i = openingLine; i <= closingLine; i++)
+            {
+                string line = lines[i];
+                line = ProcessLine(line);
+                line = ApplyBlockModifiers(line, blockNumber);
+                processedLines.Add(line);
+            }
         }
 
         return processedLines;
     }
+
+    private string ApplyBlockModifiers(string line, int blockNumber)
+    {
+        if (ModifierFunctions != null)
+        {
+            foreach (var modifier in ModifierFunctions)
+            {
+                line = modifier(line, blockNumber);
+            }
+        }
+
+        return line;
+    }
+
 
     public string Replace(string line, string oldValue, string newValue)
     {

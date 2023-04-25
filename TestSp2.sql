@@ -29,12 +29,32 @@ BEGIN
         Column1,
         Column2,
         Column3
-    INTO
-        #TempTable
+            INTO #TempTable -- NewBlockToComment
     FROM
         cte_example
     -- DemoWhere: WHERE Column2 > 100
     -- NewCellEnd_1
+
+    /* 
+        SignedComment: ### Step 3: Perform a final SELECT
+        this is a line below a SignedComment
+        this is a second line below a SignedComment
+    */
+
+    /* 
+    --perform this select in the notebook
+        --NewCellBegin_5
+                SELECT
+        Column1,
+        Column2,
+        Column3
+            INTO #TempTable
+        FROM
+            cte_example
+
+
+        --NewCellEnd_5
+    */
 
     -- SignedComment: ### Step 3: Perform a final SELECT
     -- this is a line below a SignedComment
@@ -50,7 +70,7 @@ BEGIN
     GROUP BY
         Column1,
         Column2
-    -- DemoWhere: TotalColumn3 > 1000
+    -- DemoWhere: WHERE TotalColumn3 > 1000
     -- NewCellEnd_2
 
 
@@ -63,7 +83,7 @@ BEGIN
             Column3
         FROM
             SomeTable
-        -- DemoWhere: Column1 = 'example'
+        -- DemoWhere: WHERE Column1 = 'example'
     ),
     cte_example2 AS (
         -- NewCellBegin_4
@@ -81,16 +101,16 @@ BEGIN
         Column2,
         SUM(Column3) AS TotalColumn3
     FROM
-
         cte_example
     INNER JOIN
         cte_example2
     ON
         cte_example.Column1 = cte_example2.Column1
 
+    -- DemoWhere: WHERE TotalColumn3 > 1000
+
     GROUP BY
         Column1,
         Column2
-    -- DemoWhere: WHERE TotalColumn3 > 1000
     -- NewCellEnd_3
 END

@@ -28,7 +28,7 @@ public class CodeBlockType : BlockType
     public override string ProcessLine(string line)
     {
         // Remove the NewCellBegin tag from the line
-        return Pattern.Replace(line, "").Trim();
+        return line;
     }
 
 }
