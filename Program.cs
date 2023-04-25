@@ -21,11 +21,17 @@ var blocks = analyzer.Analyze(inputFilePath);
 
 foreach (var block in blocks)
 {
-    Console.WriteLine($"Block name: {block.Name}");
+    Console.WriteLine($"Block type: {block.Name}");
     Console.WriteLine($"Block lines: {block.Lines.Count}");
     Console.WriteLine($"Block opening line: {block.OpeningLine}");
     Console.WriteLine($"Block closing line: {block.ClosingLine}");
-    Console.WriteLine($"Block lines: {block.Lines}");
+    
+    // print out every line of the block
+    foreach (var line in block.Lines)
+    {
+        Console.WriteLine(line);
+    }
+
     Console.WriteLine();
 }
 

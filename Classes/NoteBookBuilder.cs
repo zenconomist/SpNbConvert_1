@@ -31,7 +31,7 @@ public class NotebookBuilder
         {
             dynamic cell = new
             {
-                cell_type = block.BlockType is CodeBlockType ? "code" : "markdown",
+                cell_type = block.Name.ToLower(),
                 metadata = new { },
                 source = block.Lines
             };

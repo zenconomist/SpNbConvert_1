@@ -12,9 +12,23 @@ public class MarkdownBlockType : IBlockType
         Pattern = new Regex(pattern, RegexOptions.Compiled);
     }
 
-    public List<string> ProcessBlock(string[] lines, int startLine, int endLine)
+    public List<string> ProcessBlock(string[] lines, int openingLine, int closingLine)
     {
-        return lines.Skip(startLine).Take(endLine - startLine).ToList();
+        var blockLines = new List<string>();
+
+        if (closingLine == -1)
+        {
+            blockLines.Add(ProcessLine(lines[openingLine]));
+        }
+        else
+        {
+            for (int i = openingLine; i <= closingLine; i++)
+            {
+                blockLines.Add(ProcessLine(lines[i]));
+            }
+        }
+
+        return blockLines;
     }
 
 
