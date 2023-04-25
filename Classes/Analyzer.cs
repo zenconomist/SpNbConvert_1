@@ -2,7 +2,7 @@ using System.Text.RegularExpressions;
 class Analyzer
 {
     private List<IBlockType> _blockTypes;
-
+    public int CurrentBlockNumber { get; private set; }
     public Analyzer(List<IBlockType> blockTypes)
     {
         _blockTypes = blockTypes;
@@ -23,6 +23,8 @@ class Analyzer
 
                 if (match.Success)
                 {
+                    CurrentBlockNumber = int.Parse(match.Groups[1].Value);
+
                     int closingLine = -1;
 
                     if (blockType.IsOpening)

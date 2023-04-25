@@ -1,4 +1,4 @@
-﻿
+﻿using System.Text.RegularExpressions;
 
 // testing the analyzer: I want to first only print out the blocks that are in the file:
 // 1. I need to get the blocks from the file
@@ -7,16 +7,36 @@
 
 string inputFilePath = "TestSp2.sql";
 // string outputFilePath = "TestSp2.ipynb";
+// BlockModifier
+BlockModifier uncommentDemoWhereInBlock = (line, blockNumber) =>
+{
+    Match match = Regex.Match(line, @"--\s*NewBlockToComment_(\d+)");
+    if (match.Success)
+    {
+        int commentBlockNumber = int.Parse(match.Groups[1].Value);
 
-// Define block types
+        // Uncomment the line only if it belongs to the corresponding block
+        if (commentBlockNumber == blockNumber)
+        {
+            // Uncomment the line by removing the comment characters "--"
+            return Regex.Replace(line.Substring(0, match.Index), @"^\s*--\s*|\s*--\s*$", "");
+        }
+    }
+
+    return line;
+};
+
 var blockTypes = new List<IBlockType>
 {
     new MarkdownBlockType(@"^\s*--\s*SignedComment:"),
-    new CodeBlockType(@"^\s*--\s*NewCellBegin_(\d+)"),
+    new CodeBlockType(@"^\s*--\s*NewCellBegin_(\d+)") { ModifierFunction = uncommentDemoWhereInBlock },
     // You can define more block types here
 };
 
+
+
 var analyzer = new Analyzer(blockTypes);
+
 var blocks = analyzer.Analyze(inputFilePath);
 
 foreach (var block in blocks)
