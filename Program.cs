@@ -16,6 +16,11 @@ var tagMap = new Dictionary<string, Tag>
         new Tag("-- SignedComment:", new Regex(@"\s*--\s*SignedComment:"))
     },
     {
+        // SignedComment without the beginning --
+        "SignedComment2",
+        new Tag("SignedComment:", new Regex(@"\s*SignedComment:"))
+    },
+    {
         "NewCellBegin",
         new Tag("-- NewCellBegin_", new Regex(@"\s*--\s*NewCellBegin_\d+"))
     },
