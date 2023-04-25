@@ -4,30 +4,24 @@ class BlockModifiers {
 
     public static string Comment(string line, int blockNumber)
     {
-        Match match = Regex.Match(line, @"--\s*NewBlockToComment_(\d+)");
-        if (match.Success)
+        string pattern = $@"\s*--\s*NewBlockToComment_{blockNumber}";
+        if (Regex.IsMatch(line, pattern))
         {
-            int commentBlockNumber = int.Parse(match.Groups[1].Value);
-
-            // Uncomment the line only if it belongs to the corresponding block
-            if (commentBlockNumber == blockNumber)
-            {
-                // Uncomment the line by removing the comment characters "--"
-                return Regex.Replace(line.Substring(0, match.Index), @"^\s*--\s*|\s*--\s*$", "");
-            }
+            line = Regex.Replace(line, @"^(\s*)(\S.*)", "$1-- $2"); // Add comment while preserving the leading whitespaces
         }
-
         return line;
     }
+
 
     public static string UnComment(string line, int blockNumber)
     {
-        string pattern = $@"\s*--\s*NewBlockToUnComment_{blockNumber}";
+        string pattern = $@"\s*--\s*NewBlockToComment_{blockNumber}";
         if (Regex.IsMatch(line, pattern))
         {
-            line = Regex.Replace(line, @"^(\s*)--\s*", "$1"); // Uncomment the line
+            line = Regex.Replace(line, @"^(\s*)--\s*(\S.*)", "$1$2"); // Uncomment the line while preserving the leading whitespaces
         }
         return line;
     }
+
 
 }

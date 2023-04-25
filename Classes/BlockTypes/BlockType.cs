@@ -11,36 +11,27 @@ public abstract class BlockType : IBlockType
 
     public abstract string ProcessLine(string line);
 
-    public List<string> ProcessBlock(string[] lines, int openingLine, int closingLine, int blockNumber)
+    // Add the general ProcessBlock method
+    public virtual List<string> ProcessBlock(string[] lines, int openingLine, int closingLine, int blockNumber)
     {
-        var blockLines = new List<string>();
+        var processedLines = new List<string>();
 
-        if (closingLine == -1)
+        for (int i = openingLine; i <= closingLine; i++)
         {
-            blockLines.Add(ProcessLine(lines[openingLine]));
-        }
-        else
-        {
-            for (int i = openingLine; i <= closingLine; i++)
-            {
-                blockLines.Add(ProcessLine(lines[i]));
-            }
-        }
+            string line = lines[i];
 
-        // In both the MarkdownBlockType and CodeBlockType classes
-        if (ModifierFunctions != null)
-        {
-            foreach (var modifier in ModifierFunctions)
+            if (ModifierFunctions != null)
             {
-                for (int i = openingLine + 1; i <= closingLine; i++)
+                foreach (var modifier in ModifierFunctions)
                 {
-                    blockLines[i] = modifier(blockLines[i], blockNumber);
+                    line = modifier(line, blockNumber);
                 }
             }
+
+            processedLines.Add(line);
         }
 
-
-        return blockLines;
+        return processedLines;
     }
 
     public string Replace(string line, string oldValue, string newValue)

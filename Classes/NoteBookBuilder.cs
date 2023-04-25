@@ -44,6 +44,11 @@ public class NotebookBuilder
 
         // Write the JSON to a file with the same name as the input file, but with .ipynb extension
         string outputFilePath = Path.ChangeExtension(inputFilePath, ".ipynb");
+        // Delete the output file if it already exists
+        if (File.Exists(outputFilePath))
+        {
+            File.Delete(outputFilePath);
+        }
         File.WriteAllText(outputFilePath, json);
     }
 }
