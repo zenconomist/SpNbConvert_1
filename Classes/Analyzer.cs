@@ -35,7 +35,7 @@ class Analyzer
 
                     var blockLines = blockType.ProcessBlock(lines, i, closingLine, blockNumber.GetValueOrDefault());
 
-                    // ...
+                    blocks.Add(new Block(blockType, blockLines, blockNumber));
                 }
             }
         }
