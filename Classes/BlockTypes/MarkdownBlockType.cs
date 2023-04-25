@@ -9,7 +9,7 @@ public class MarkdownBlockType : IBlockType
 
     public MarkdownBlockType(string pattern)
     {
-        Pattern = new Regex(pattern);
+        Pattern = new Regex(pattern, RegexOptions.Compiled);
     }
 
     public List<string> ProcessBlock(string[] lines, int startLine, int endLine)
@@ -26,7 +26,7 @@ public class MarkdownBlockType : IBlockType
 
     public string ProcessLine(string line)
     {
-        // Process the line to remove the leading SignedComment tag
-        return Regex.Replace(line, @"^\s*--\s*SignedComment:\s*", "");
+        // Remove the comment characters from the line
+        return line.Replace("--", "").Trim();
     }
 }

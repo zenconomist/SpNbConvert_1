@@ -10,7 +10,7 @@ public class CodeBlockType : IBlockType
 
     public CodeBlockType(string pattern)
     {
-        Pattern = new Regex(pattern);
+        Pattern = new Regex(pattern, RegexOptions.Compiled);
     }
 
     public List<string> ProcessBlock(string[] lines, int startLine, int endLine)
@@ -27,8 +27,8 @@ public class CodeBlockType : IBlockType
 
     public string ProcessLine(string line)
     {
-        // Process the line to remove any leading comment characters
-        return Regex.Replace(line, @"^\s*--\s*", "");
+        // Remove the NewCellBegin tag from the line
+        return Pattern.Replace(line, "").Trim();
     }
 
 }
