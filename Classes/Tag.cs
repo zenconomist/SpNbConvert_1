@@ -21,11 +21,11 @@ public class Tag
     {
         // q: what does Pattern.Replace do?
         // a: it's a method from the Regex class, it replaces all matches of the pattern with the second argument
-        return Pattern.Replace(line, "");
+        return Regex.Replace(line, Pattern.ToString(), "");
     }
 
     public List<string> TagCleanUp(List<string> lines)
     {
-        return lines.Select(line => Pattern.Replace(line, "")).ToList();
+        return lines.Select(line => Regex.Replace(line, Pattern.ToString(), "")).ToList();
     }
 }

@@ -35,7 +35,18 @@ public abstract class BlockType : IBlockType
             }
         }
 
-        return processedLines;
+        // Remove unnecessary tags
+        var reProcessedLines = processedLines.Select(line =>
+        {
+            string cleanedLine = line;
+            foreach (var tag in Tags)
+            {
+                cleanedLine = Regex.Replace(cleanedLine, tag.Value.Pattern.ToString(), "");
+            }
+            return cleanedLine;
+        }).ToList();
+
+        return reProcessedLines;
     }
 
     private string ApplyBlockModifiers(string line, int blockNumber)

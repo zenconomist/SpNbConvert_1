@@ -19,7 +19,27 @@ var tagMap = new Dictionary<string, Tag>
         "NewCellBegin",
         new Tag("-- NewCellBegin_", new Regex(@"\s*--\s*NewCellBegin_\d+"))
     },
-    // ... add other tags here
+    {
+        "NewCellEnd",
+        new Tag("-- NewCellEnd_", new Regex(@"\s*--\s*NewCellEnd_\d+"))
+    },
+    {
+        "DemoWhere",
+        new Tag("-- DemoWhere:", new Regex(@"\s*--\s*DemoWhere:"))
+    },
+    {
+        "NewBlockToComment",
+        new Tag("-- NewBlockToComment_", new Regex(@"\s*--\s*NewBlockToComment_\d+"))
+    },
+    {
+        "NewBlockToUnComment",
+        new Tag("-- NewBlockToUnComment_", new Regex(@"\s*--\s*NewBlockToUnComment_\d+"))
+    },
+    {
+        "RemoveDemoWhere",
+        new Tag("-- RemoveDemoWhere:", new Regex(@"\s*--\s*RemoveDemoWhere:"))
+    }
+
 };
 
 
@@ -31,15 +51,18 @@ var removeDemoWhere = new BlockModifier(BlockModifiers.RemoveDemoWhere);
 
 var blockTypes = new List<IBlockType>
 {
-    new MarkdownBlockType(tagMap["SignedComment"].Pattern),
-    new CodeBlockType(tagMap["NewCellBegin"].Pattern) 
+    new MarkdownBlockType(tagMap["SignedComment"].Pattern, tagMap),
+    new CodeBlockType(tagMap["NewCellBegin"].Pattern, tagMap) 
         { ModifierFunctions = 
             { 
                 blockToComment
                 , blockToUnComment
                 , removeDemoWhere 
             } 
-    },
+    }
+    // add Tags
+
+    ,
     // You can define more block types here
 };
 

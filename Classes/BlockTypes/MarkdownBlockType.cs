@@ -14,6 +14,13 @@ public class MarkdownBlockType : BlockType
         Pattern = pattern;
     }
 
+    // constructor with Tags involved
+    public MarkdownBlockType(Regex pattern, Dictionary<string, Tag> tags)
+    {
+        Pattern = pattern;
+        Tags = tags;
+    }
+
     /*    
     public override List<string> ProcessBlock(string[] lines, int openingLine, int closingLine, int blockNumber)
     {

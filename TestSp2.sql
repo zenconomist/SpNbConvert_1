@@ -29,7 +29,7 @@ BEGIN
         Column1,
         Column2,
         Column3
-            INTO #TempTable -- NewBlockToComment
+            INTO #TempTable -- NewBlockToComment_1
     FROM
         cte_example
     -- DemoWhere: WHERE Column2 > 100

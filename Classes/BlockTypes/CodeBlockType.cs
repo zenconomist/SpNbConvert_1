@@ -16,6 +16,13 @@ public class CodeBlockType : BlockType
         Pattern = pattern;
     }
 
+    // constructor with Tags involved
+    public CodeBlockType(Regex pattern, Dictionary<string, Tag> tags)
+    {
+        Pattern = pattern;
+        Tags = tags;
+    }
+
     /*
     public override List<string> ProcessBlock(string[] lines, int startLine, int endLine)
     {
