@@ -33,7 +33,7 @@ public class CodeBlockType : BlockType
     public override Regex GetClosingPattern(Match openingPatternMatch)
     {
         string closingTagNumber = openingPatternMatch.Groups[1].Value;
-        string closingPattern = $@"^\s*--\s*NewCellEnd_{closingTagNumber}";
+        string closingPattern = $@"^\s*--\s*{base.Tags["NewCellEnd"].TagString}{closingTagNumber}";
         return new Regex(closingPattern);
     }
 

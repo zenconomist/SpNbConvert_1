@@ -13,6 +13,7 @@ public interface IBlockType
     string ProcessLine(string line);
     List<BlockModifierDelegate> ModifierFunctions { get; set; } // Change to a list of BlockModifier
 
+    public string AddHeaderComment(string line);
 }
 
 

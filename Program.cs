@@ -22,7 +22,7 @@ var tagMap = new Dictionary<string, Tag>
     },
     {
         "NewCellBegin",
-        new Tag("-- NewCellBegin_", new Regex(@"\s*--\s*NewCellBegin_\d+"))
+        new Tag("-- NewCellBegin_", new Regex(@"\s*--\s*NewCellBegin_\d+"), false)
     },
     {
         "NewCellEnd",

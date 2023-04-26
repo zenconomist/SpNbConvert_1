@@ -57,6 +57,23 @@ public abstract class BlockType : IBlockType
 
         return line;
     }
+    public string AddHeaderComment(string line)
+    {
+        // Check if there is a Tag with the key "NewCellBegin"
+        if (Tags.ContainsKey("NewCellBegin"))
+        {
+            string headerCommentPattern = Tags["NewCellBegin"].Pattern.ToString();
+            Match match = Regex.Match(line, headerCommentPattern);
+
+            if (match.Success)
+            {
+                string headerComment = match.Groups[2].Value;
+                return $"#### {headerComment}";
+            }
+        }
+        return null;
+    }
+
 
     // logically important to only clean up after all block modifications were made
     public string UnTag(string line)
