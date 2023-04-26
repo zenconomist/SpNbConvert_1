@@ -91,7 +91,7 @@ BEGIN
             SomeTable
         -- DemoWhere: WHERE Column1 = 'example'
     )
-    ,cte_example2 AS ( -- NewBlockToComment_6
+    ,cte_example2 AS ( -- RemoveLine_Block_6
         -- NewCellBegin_4
         SELECT
             Column1,

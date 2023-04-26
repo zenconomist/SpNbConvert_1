@@ -13,12 +13,12 @@ var tagMap = new Dictionary<string, Tag>
 {
     {
         "SignedComment",
-        new Tag("-- SignedComment:", new Regex(@"\s*--\s*SignedComment:"), true)
+        new Tag("-- SignedComment:", new Regex(@"\s*--\s*SignedComment:"))
     },
     {
         // SignedComment without the beginning --
         "SignedComment2",
-        new Tag("SignedComment:", new Regex(@"\s*SignedComment:"), true)
+        new Tag("SignedComment:", new Regex(@"\s*SignedComment:"))
     },
     {
         "NewCellBegin",
@@ -30,19 +30,23 @@ var tagMap = new Dictionary<string, Tag>
     },
     {
         "DemoWhere",
-        new Tag("-- DemoWhere:", new Regex(@"\s*--\s*DemoWhere:"), true)
+        new Tag("-- DemoWhere:", new Regex(@"\s*--\s*DemoWhere:"))
     },
     {
         "NewBlockToComment",
-        new Tag("-- NewBlockToComment_", new Regex(@"\s*--\s*NewBlockToComment_\d+"), true)
+        new Tag("-- NewBlockToComment_", new Regex(@"\s*--\s*NewBlockToComment_\d+"))
     },
     {
         "NewBlockToUnComment",
-        new Tag("-- NewBlockToUnComment_", new Regex(@"\s*--\s*NewBlockToUnComment_\d+"), true)
+        new Tag("-- NewBlockToUnComment_", new Regex(@"\s*--\s*NewBlockToUnComment_\d+"))
     },
     {
         "RemoveDemoWhere",
-        new Tag("-- RemoveDemoWhere:", new Regex(@"\s*--\s*RemoveDemoWhere:"), true)
+        new Tag("-- RemoveDemoWhere:", new Regex(@"\s*--\s*RemoveDemoWhere:"))
+    },
+    {
+        "RemoveLine", 
+        new Tag("-- RemoveLine_Block_", new Regex(@"\s*--\s*RemoveLine_Block_\d+")) 
     }
 
 };

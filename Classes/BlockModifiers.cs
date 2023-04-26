@@ -13,10 +13,10 @@ class BlockModifier
     {
         if (Tags.ContainsKey("Comment"))
         {
-            string pattern = $@"\s*--\s*{Tags["Comment"].TagString}_{blockNumber}";
+            string pattern = $@"\s*--\s*{Tags["Comment"].TagString}{blockNumber}";
             if (Regex.IsMatch(line, pattern))
             {
-                line = "--" + line; // Comment the line
+                line = Regex.Replace(line, @"^(\s*)(\S.*)", "$1-- $2"); // Add comment while preserving the leading whitespaces
             }
         }
         return line;
@@ -26,7 +26,7 @@ class BlockModifier
     {
         if (Tags.ContainsKey("UnComment"))
         {
-            string pattern = $@"\s*--\s*{Tags["UnComment"].TagString}_{blockNumber}";
+            string pattern = $@"\s*--\s*{Tags["UnComment"].TagString}{blockNumber}";
             if (Regex.IsMatch(line, pattern))
             {
                 line = Regex.Replace(line, @"^(\s*)--\s*(\S.*)", "$1$2"); // Uncomment the line while preserving the leading whitespaces
@@ -47,4 +47,19 @@ class BlockModifier
         }
         return line;
     };
+
+    public BlockModifierDelegate RemoveLine => (string line, int blockNumber) =>
+    {
+        if (Tags.ContainsKey("RemoveLine"))
+        {
+            string pattern = $@"\s*{Tags["RemoveLine"].TagString}{blockNumber}";
+            if (Regex.IsMatch(line, pattern))
+            {
+                line = string.Empty; // Set the line to an empty string
+            }
+        }
+        return line;
+    };
+
+
 }
