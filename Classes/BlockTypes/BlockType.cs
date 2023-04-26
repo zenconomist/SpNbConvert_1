@@ -35,26 +35,12 @@ public abstract class BlockType : IBlockType
             }
         }
 
+        // use TagCleanUp to remove tags from the processed lines
         foreach (var tag in Tags.Values)
         {
-            processedLines = tag.TagCleanUp(processedLines);
+            processedLines = processedLines.Select(line => tag.TagCleanUp(line)).ToList();
         }
 
-        /*
-        // Remove unnecessary tags
-        var reProcessedLines = processedLines.Select(line =>
-        {
-            string cleanedLine = line;
-            foreach (var tag in Tags)
-            {
-                if (tag.Value.ToRemove)
-                {
-                    cleanedLine = Regex.Replace(cleanedLine, tag.Value.Pattern.ToString(), "");
-                }
-            }
-            return cleanedLine;
-        }).ToList();
-        */
 
         return processedLines;
     }
