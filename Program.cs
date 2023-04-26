@@ -26,7 +26,7 @@ var tagMap = new Dictionary<string, Tag>
     },
     {
         "NewCellEnd",
-        new Tag("-- NewCellEnd_", new Regex(@"\s*--\s*NewCellEnd_\d+"))
+        new Tag("-- NewCellEnd_", new Regex(@"\s*--\s*NewCellEnd_\d+"), @"^\s*--\s*NewCellEnd_")
     },
     {
         "DemoWhere",

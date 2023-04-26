@@ -4,6 +4,8 @@ public class Tag
     public string TagString { get; set; }
     public Regex Pattern { get; set; }
 
+    public string PatternWithBlockNumber { get; set; }
+
     public bool ToRemove { get; set; } = false;
 
     public Tag(string tagString, Regex pattern)
@@ -29,6 +31,36 @@ public class Tag
     {
         TagString = tagString;
         Pattern = pattern;
+        ToRemove = toRemove;
+    }
+
+    public Tag(string tagString, string pattern, string patternWithBlockNumber)
+    {
+        TagString = tagString;
+        Pattern = new Regex(pattern, RegexOptions.Compiled);
+        PatternWithBlockNumber = patternWithBlockNumber;
+    }
+
+    public Tag(string tagString, Regex pattern, string patternWithBlockNumber)
+    {
+        TagString = tagString;
+        Pattern = pattern;
+        PatternWithBlockNumber = patternWithBlockNumber;
+    }
+
+    public Tag(string tagString, string pattern, string patternWithBlockNumber, bool toRemove)
+    {
+        TagString = tagString;
+        Pattern = new Regex(pattern, RegexOptions.Compiled);
+        PatternWithBlockNumber = patternWithBlockNumber;
+        ToRemove = toRemove;
+    }
+
+    public Tag(string tagString, Regex pattern, string patternWithBlockNumber, bool toRemove)
+    {
+        TagString = tagString;
+        Pattern = pattern;
+        PatternWithBlockNumber = patternWithBlockNumber;
         ToRemove = toRemove;
     }
 
