@@ -13,12 +13,12 @@ var tagMap = new Dictionary<string, Tag>
 {
     {
         "SignedComment",
-        new Tag("-- SignedComment:", new Regex(@"\s*--\s*SignedComment:"))
+        new Tag("-- SignedComment:", new Regex(@"\s*--\s*SignedComment:"), true)
     },
     {
         // SignedComment without the beginning --
         "SignedComment2",
-        new Tag("SignedComment:", new Regex(@"\s*SignedComment:"))
+        new Tag("SignedComment:", new Regex(@"\s*SignedComment:"), true)
     },
     {
         "NewCellBegin",
@@ -30,29 +30,31 @@ var tagMap = new Dictionary<string, Tag>
     },
     {
         "DemoWhere",
-        new Tag("-- DemoWhere:", new Regex(@"\s*--\s*DemoWhere:"))
+        new Tag("-- DemoWhere:", new Regex(@"\s*--\s*DemoWhere:"), true)
     },
     {
         "NewBlockToComment",
-        new Tag("-- NewBlockToComment_", new Regex(@"\s*--\s*NewBlockToComment_\d+"))
+        new Tag("-- NewBlockToComment_", new Regex(@"\s*--\s*NewBlockToComment_\d+"), true)
     },
     {
         "NewBlockToUnComment",
-        new Tag("-- NewBlockToUnComment_", new Regex(@"\s*--\s*NewBlockToUnComment_\d+"))
+        new Tag("-- NewBlockToUnComment_", new Regex(@"\s*--\s*NewBlockToUnComment_\d+"), true)
     },
     {
         "RemoveDemoWhere",
-        new Tag("-- RemoveDemoWhere:", new Regex(@"\s*--\s*RemoveDemoWhere:"))
+        new Tag("-- RemoveDemoWhere:", new Regex(@"\s*--\s*RemoveDemoWhere:"), true)
     }
 
 };
 
-
+var blockMod = new BlockModifier(tagMap);
 
 // BlockModifier
-BlockModifier blockToComment = new BlockModifier(BlockModifiers.Comment);
-BlockModifier blockToUnComment = new BlockModifier(BlockModifiers.UnComment);
-var removeDemoWhere = new BlockModifier(BlockModifiers.RemoveDemoWhere);
+var blockToComment = new BlockModifierDelegate(blockMod.Comment);
+var blockToUnComment = new BlockModifierDelegate(blockMod.UnComment);
+var removeDemoWhere = new BlockModifierDelegate(blockMod.RemoveDemoWhere);
+
+
 
 var blockTypes = new List<IBlockType>
 {

@@ -11,8 +11,8 @@ public interface IBlockType
 
     Regex GetClosingPattern(Match openingPatternMatch);
     string ProcessLine(string line);
-    List<BlockModifier> ModifierFunctions { get; set; } // Change to a list of BlockModifier
+    List<BlockModifierDelegate> ModifierFunctions { get; set; } // Change to a list of BlockModifier
 
 }
 
-public delegate string BlockModifier(string line, int blockNumber);
+

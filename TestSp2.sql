@@ -10,6 +10,7 @@ AS
 BEGIN
     -- SignedComment: ### Step 1: Create a Common Table Expression (CTE)
 
+    -- NewCellBegin_1
     WITH cte_example AS (
     --NewCellBegin_0
         SELECT
@@ -24,7 +25,7 @@ BEGIN
     -- SignedComment: ### Step 2: Insert data into a temporary table
     -- this temp table will be used in the final SELECT
 
-    -- NewCellBegin_1
+
     SELECT
         Column1,
         Column2,
@@ -67,15 +68,20 @@ BEGIN
         SUM(Column3) AS TotalColumn3
     FROM
         #TempTable
+    -- DemoWhere: WHERE TotalColumn3 > 1000
     GROUP BY
         Column1,
         Column2
-    -- DemoWhere: WHERE TotalColumn3 > 1000
+
     -- NewCellEnd_2
 
 
-    -- CTE example where 2 CTEs are used and a final SELECT is performed
+    -- SignedComment: #### CTE example where 2 CTEs are used and a final SELECT is performed
+    -- SignedComment: This is a second line of SignedComment
+
+
     -- NewCellBegin_3
+        -- NewCellBegin_6
     ;WITH cte_example AS (
         SELECT
             Column1,
@@ -84,8 +90,8 @@ BEGIN
         FROM
             SomeTable
         -- DemoWhere: WHERE Column1 = 'example'
-    ),
-    cte_example2 AS (
+    )
+    ,cte_example2 AS ( -- NewBlockToComment_6
         -- NewCellBegin_4
         SELECT
             Column1,
@@ -95,6 +101,7 @@ BEGIN
             SomeTable
         -- DemoWhere: WHERE Column1 = 'example2'
         -- NewCellEnd_4
+    -- NewCellEnd_6
     )
     SELECT
         Column1,

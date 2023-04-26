@@ -4,6 +4,8 @@ public class Tag
     public string TagString { get; set; }
     public Regex Pattern { get; set; }
 
+    public bool ToRemove { get; set; } = false;
+
     public Tag(string tagString, Regex pattern)
     {
         TagString = tagString;
@@ -16,6 +18,20 @@ public class Tag
         Pattern = new Regex(pattern, RegexOptions.Compiled);
     }
 
+    public Tag(string tagString, string pattern, bool toRemove)
+    {
+        TagString = tagString;
+        Pattern = new Regex(pattern, RegexOptions.Compiled);
+        ToRemove = toRemove;
+    }
+
+    public Tag(string tagString, Regex pattern, bool toRemove)
+    {
+        TagString = tagString;
+        Pattern = pattern;
+        ToRemove = toRemove;
+    }
+
     // TagCleanUp for one line string
     public string TagCleanUp(string line)
     {
@@ -26,6 +42,14 @@ public class Tag
 
     public List<string> TagCleanUp(List<string> lines)
     {
-        return lines.Select(line => Regex.Replace(line, Pattern.ToString(), "")).ToList();
+        return lines.Select(line =>
+        {
+            if (ToRemove)
+            {
+                return Regex.Replace(line, Pattern.ToString(), "");
+            }
+            return line;
+        }).ToList();
     }
+
 }

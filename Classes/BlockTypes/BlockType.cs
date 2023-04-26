@@ -3,7 +3,7 @@ public abstract class BlockType : IBlockType
 {
     public abstract string Name { get; }
     public abstract Regex Pattern { get; }
-    public List<BlockModifier> ModifierFunctions { get; set; } = new List<BlockModifier>(); // Change to a list of BlockModifier
+    public List<BlockModifierDelegate> ModifierFunctions { get; set; } = new List<BlockModifierDelegate>(); // Change to a list of BlockModifier
     public int? BlockNumber { get; set; } 
     public bool IsOpening => false;
     public bool IsClosing => false;

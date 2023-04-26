@@ -1,37 +1,50 @@
 using System.Text.RegularExpressions;
+public delegate string BlockModifierDelegate(string line, int blockNumber);
+class BlockModifier
+{
+    public Dictionary<string, Tag> Tags { get; set; }
 
-class BlockModifiers {
-
-    public static string Comment(string line, int blockNumber)
+    public BlockModifier(Dictionary<string, Tag> tags)
     {
-        string pattern = $@"\s*--\s*NewBlockToComment_{blockNumber}";
-        if (Regex.IsMatch(line, pattern))
-        {
-            line = Regex.Replace(line, @"^(\s*)(\S.*)", "$1-- $2"); // Add comment while preserving the leading whitespaces
-        }
-        return line;
+        Tags = tags;
     }
 
-
-    public static string UnComment(string line, int blockNumber)
+    public BlockModifierDelegate Comment => (string line, int blockNumber) =>
     {
-        string pattern = $@"\s*--\s*NewBlockToComment_{blockNumber}";
-        if (Regex.IsMatch(line, pattern))
+        if (Tags.ContainsKey("Comment"))
         {
-            line = Regex.Replace(line, @"^(\s*)--\s*(\S.*)", "$1$2"); // Uncomment the line while preserving the leading whitespaces
+            string pattern = $@"\s*--\s*{Tags["Comment"].TagString}_{blockNumber}";
+            if (Regex.IsMatch(line, pattern))
+            {
+                line = "--" + line; // Comment the line
+            }
         }
         return line;
-    }
+    };
 
-    public static string RemoveDemoWhere(string line, int blockNumber)
+    public BlockModifierDelegate UnComment => (string line, int blockNumber) =>
     {
-        string pattern = @"\s*--\s*DemoWhere:";
-        if (Regex.IsMatch(line, pattern))
+        if (Tags.ContainsKey("UnComment"))
         {
-            line = Regex.Replace(line, pattern, string.Empty);
+            string pattern = $@"\s*--\s*{Tags["UnComment"].TagString}_{blockNumber}";
+            if (Regex.IsMatch(line, pattern))
+            {
+                line = Regex.Replace(line, @"^(\s*)--\s*(\S.*)", "$1$2"); // Uncomment the line while preserving the leading whitespaces
+            }
         }
         return line;
-    }
+    };
 
-
+    public BlockModifierDelegate RemoveDemoWhere => (string line, int blockNumber) =>
+    {
+        if (Tags.ContainsKey("DemoWhere"))
+        {
+            string pattern = Tags["DemoWhere"].Pattern.ToString();
+            if (Regex.IsMatch(line, pattern))
+            {
+                line = Regex.Replace(line, pattern, string.Empty);
+            }
+        }
+        return line;
+    };
 }
