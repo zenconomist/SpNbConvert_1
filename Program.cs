@@ -13,20 +13,20 @@ var tagMap = new Dictionary<string, Tag>
 {
     {
         "SignedComment",
-        new Tag("-- SignedComment:", new Regex(@"\s*--\s*SignedComment:"))
+        new Tag("-- BlocCom:", new Regex(@"\s*--\s*BlocCom:"))
     },
     {
         // SignedComment without the beginning --
         "SignedComment2",
-        new Tag("SignedComment:", new Regex(@"\s*SignedComment:"))
+        new Tag("BlocCom:", new Regex(@"\s*BlocCom:"))
     },
     {
         "NewCellBegin",
-        new Tag("-- NewCellBegin_", new Regex(@"\s*--\s*NewCellBegin_\d+"), false)
+        new Tag("-- CodeBlocBegin_", new Regex(@"\s*--\s*CodeBlocBegin_\d+"), false)
     },
     {
         "NewCellEnd",
-        new Tag("-- NewCellEnd_", new Regex(@"\s*--\s*NewCellEnd_\d+"), @"^\s*--\s*NewCellEnd_")
+        new Tag("-- CodeBlocEnd_", new Regex(@"\s*--\s*CodeBlocEnd_\d+"), @"^\s*--\s*CodeBlocEnd_")
     },
     {
         "DemoWhere",
@@ -34,11 +34,11 @@ var tagMap = new Dictionary<string, Tag>
     },
     {
         "NewBlockToComment",
-        new Tag("-- NewBlockToComment_", new Regex(@"\s*--\s*NewBlockToComment_\d+"))
+        new Tag("-- BlocToComment_", new Regex(@"(?:.*)\s*--\s*BlocToComment_\d+"), @"\s*--\s*BlocToComment_")
     },
     {
         "NewBlockToUnComment",
-        new Tag("-- NewBlockToUnComment_", new Regex(@"\s*--\s*NewBlockToUnComment_\d+"))
+        new Tag("-- BlocToUnComment_", new Regex(@"(?:.*)\s*--\s*BlocToUnComment_\d+"), @"\s*--\s*BlocToUnComment_")
     },
     {
         "RemoveDemoWhere",
@@ -46,7 +46,7 @@ var tagMap = new Dictionary<string, Tag>
     },
     {
         "RemoveLine", 
-        new Tag("-- RemoveLine_Block_", new Regex(@"\s*--\s*RemoveLine_Block_\d+")) 
+        new Tag("-- RemoveLine_Block_", new Regex(@"(?:.*)\s*--\s*RemoveLine_Block_\d+"), @"\s*--\s*RemoveLine_Block_") 
     }
 
 };
@@ -57,6 +57,7 @@ var blockMod = new BlockModifier(tagMap);
 var blockToComment = new BlockModifierDelegate(blockMod.Comment);
 var blockToUnComment = new BlockModifierDelegate(blockMod.UnComment);
 var removeDemoWhere = new BlockModifierDelegate(blockMod.RemoveDemoWhere);
+var removeLine = new BlockModifierDelegate(blockMod.RemoveLine);
 
 
 
@@ -69,6 +70,7 @@ var blockTypes = new List<IBlockType>
                 blockToComment
                 , blockToUnComment
                 , removeDemoWhere 
+                , removeLine
             } 
     }
     // add Tags

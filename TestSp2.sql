@@ -1,5 +1,5 @@
 /* 
-    SignedComment: ## Test2 Stored Procedure
+    BLocCom: ## Test2 Stored Procedure
     This is an example stored procedure that demonstrates
     the use of various custom annotations for converting
     to a Jupyter notebook.
@@ -8,11 +8,12 @@
 CREATE PROCEDURE Test2
 AS
 BEGIN
-    -- SignedComment: ### Step 1: Create a Common Table Expression (CTE)
+    -- BLocCom: ### Step 1: Create a Common Table Expression (CTE)
 
-    -- NewCellBegin_1
+    -- CodeBlocBegin_1
+    -- Bloc1
     WITH cte_example AS (
-    --NewCellBegin_0
+    --CodeBlocBegin_0
         SELECT
             Column1,
             Column2,
@@ -20,9 +21,9 @@ BEGIN
         FROM
             SomeTable
         -- DemoWhere: Where Column1 = 'example'
-    --NewCellEnd_0
+    --CodeBlocEnd_0
     )
-    -- SignedComment: ### Step 2: Insert data into a temporary table
+    -- BLocCom: ### Step 2: Insert data into a temporary table
     -- this temp table will be used in the final SELECT
 
 
@@ -30,21 +31,21 @@ BEGIN
         Column1,
         Column2,
         Column3
-            INTO #TempTable -- NewBlockToComment_1
+            INTO #TempTable -- BlocToComment_1
     FROM
         cte_example
     -- DemoWhere: WHERE Column2 > 100
-    -- NewCellEnd_1
+    -- CodeBlocEnd_1
 
     /* 
-        SignedComment: ### Step 3: Perform a final SELECT
-        this is a line below a SignedComment
-        this is a second line below a SignedComment
+        BLocCom: ### Step 3: Perform a final SELECT
+        this is a line below a BLocCom
+        this is a second line below a BLocCom
     */
 
     /* 
     --perform this select in the notebook
-        --NewCellBegin_5
+        --CodeBlocBegin_5
                 SELECT
         Column1,
         Column2,
@@ -54,14 +55,14 @@ BEGIN
             cte_example
 
 
-        --NewCellEnd_5
+        --CodeBlocEnd_5
     */
 
-    -- SignedComment: ### Step 3: Perform a final SELECT
-    -- this is a line below a SignedComment
-    -- this is a second line below a SignedComment
+    -- BLocCom: ### Step 3: Perform a final SELECT
+    -- this is a line below a BLocCom
+    -- this is a second line below a BLocCom
 
-    -- NewCellBegin_2
+    -- CodeBlocBegin_2
     SELECT
         Column1,
         Column2,
@@ -73,15 +74,19 @@ BEGIN
         Column1,
         Column2
 
-    -- NewCellEnd_2
+    -- CodeBlocEnd_2
 
 
-    -- SignedComment: #### CTE example where 2 CTEs are used and a final SELECT is performed
-    -- SignedComment: This is a second line of SignedComment
+    -- BLocCom: #### CTE example where 2 CTEs are used and a final SELECT is performed
+    -- BLocCom: This is a second line of BLocCom
 
 
-    -- NewCellBegin_3
-        -- NewCellBegin_6
+    -- CodeBlocBegin_3
+        -- CodeBlocBegin_6
+            /*
+                This is a comment for the CTE
+            */
+
     ;WITH cte_example AS (
         SELECT
             Column1,
@@ -92,7 +97,7 @@ BEGIN
         -- DemoWhere: WHERE Column1 = 'example'
     )
     ,cte_example2 AS ( -- RemoveLine_Block_6
-        -- NewCellBegin_4
+        -- CodeBlocBegin_4
         SELECT
             Column1,
             Column2,
@@ -100,8 +105,8 @@ BEGIN
         FROM
             SomeTable
         -- DemoWhere: WHERE Column1 = 'example2'
-        -- NewCellEnd_4
-    -- NewCellEnd_6
+        -- CodeBlocEnd_4
+    -- CodeBlocEnd_6
     )
     SELECT
         Column1,
@@ -119,5 +124,5 @@ BEGIN
     GROUP BY
         Column1,
         Column2
-    -- NewCellEnd_3
+    -- CodeBlocEnd_3
 END
