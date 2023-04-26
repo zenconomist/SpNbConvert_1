@@ -11,8 +11,7 @@ BEGIN
     -- BLocCom: ### Step 1: Create a Common Table Expression (CTE)
 
     -- CodeBlocBegin_1
-    -- Bloc1
-    WITH cte_example AS (
+    WITH cte_example AS ( -- RemoveLine_Block_1
     --CodeBlocBegin_0
         SELECT
             Column1,
@@ -125,4 +124,24 @@ BEGIN
         Column1,
         Column2
     -- CodeBlocEnd_3
+
+    -- CodeBlocBegin_10
+    ;With a as (
+        -- CodeBlocBegin_7
+        select 1 as a, 2 as b
+        -- CodeBlocEnd_7
+    )
+    ,b as ( -- RemoveLine_Block_10
+        -- CodeBlocBegin_8
+        select 1 as a, 2 as b
+        -- CodeBlocEnd_8
+    -- CodeBlocEnd_10
+    )
+
+
+    select * from a
+
+
+
+
 END

@@ -6,7 +6,9 @@ public class Tag
 
     public string PatternWithBlockNumber { get; set; }
 
-    public bool ToRemove { get; set; } = false;
+    public bool ToRemove { get; set; } = true;
+
+    public string Type { get; set; }
 
     public Tag(string tagString, Regex pattern)
     {
@@ -40,6 +42,7 @@ public class Tag
         Pattern = new Regex(pattern, RegexOptions.Compiled);
         PatternWithBlockNumber = patternWithBlockNumber;
     }
+    
 
     public Tag(string tagString, Regex pattern, string patternWithBlockNumber)
     {
@@ -64,12 +67,34 @@ public class Tag
         ToRemove = toRemove;
     }
 
+    public Tag(string tagString, string pattern, string patternWithBlockNumber, bool toRemove, string type)
+    {
+        TagString = tagString;
+        Pattern = new Regex(pattern, RegexOptions.Compiled);
+        PatternWithBlockNumber = patternWithBlockNumber;
+        ToRemove = toRemove;
+        Type = type;
+    }
+
+    public Tag(string tagString, Regex pattern, string patternWithBlockNumber, bool toRemove, string type)
+    {
+        TagString = tagString;
+        Pattern = pattern;
+        PatternWithBlockNumber = patternWithBlockNumber;
+        ToRemove = toRemove;
+        Type = type;
+    }
+
     // TagCleanUp for one line string
     public string TagCleanUp(string line)
     {
         // q: what does Pattern.Replace do?
         // a: it's a method from the Regex class, it replaces all matches of the pattern with the second argument
-        return Regex.Replace(line, Pattern.ToString(), "");
+        if (ToRemove)
+        {
+            return Regex.Replace(line, Pattern.ToString(), "");
+        }
+        return line;
     }
 
     public List<string> TagCleanUp(List<string> lines)
