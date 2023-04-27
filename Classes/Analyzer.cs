@@ -1,14 +1,14 @@
 using System.Text.RegularExpressions;
-class Analyzer
+class NbAnalyzer
 {
     private List<IBlockType> _blockTypes;
     public int CurrentBlockNumber { get; private set; }
-    public Analyzer(List<IBlockType> blockTypes)
+    public NbAnalyzer(List<IBlockType> blockTypes)
     {
         _blockTypes = blockTypes;
     }
 
-    public List<Block> Analyze(string inputFilePath)
+    public List<Block> NbAnalyze(string inputFilePath)
     {
         var blocks = new List<Block>();
         var lines = File.ReadAllLines(inputFilePath);
@@ -19,10 +19,17 @@ class Analyzer
 
             foreach (var blockType in _blockTypes)
             {
+
+                // Console.WriteLine($"Checking line {i} for block type: {blockType.Name}, line: {line}.");
+
                 Match match = blockType.Pattern.Match(line);
+                
+                // Console.WriteLine($"Matched: {match.Success}, match value: {match.Value}."); // Add this line to see what the match value is
 
                 if (match.Success)
                 {
+                    // Console.WriteLine($"Found block type: {blockType.Name} on line {i}.");
+
                     int? blockNumber = null;
 
                     // Add this check to prevent parsing an empty string

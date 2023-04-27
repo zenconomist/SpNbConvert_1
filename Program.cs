@@ -13,16 +13,16 @@ var tagMap = new Dictionary<string, Tag>
 {
     {
         "SignedComment",
-        new Tag("-- BlocCom:", new Regex(@"\s*--\s*BlocCom:"))
+        new Tag("-- BlocCom:", new Regex(@"(?:.*)\s*--\s*BlocCom:"))
     },
     {
         // SignedComment without the beginning --
         "SignedComment2",
-        new Tag("BlocCom:", new Regex(@"\s*BlocCom:"))
+        new Tag("BlocCom:", new Regex(@"(?:.*)\s*BlocCom:"))
     },
     {
         "NewCellBegin",
-        new Tag("-- CodeBlocBegin_", new Regex(@"\s*--\s*CodeBlocBegin_\d+"), false)
+        new Tag("-- CodeBlocBegin_", new Regex(@"\s*--\s*CodeBlocBegin_\d+"))
     },
     {
         "NewCellEnd",
@@ -64,6 +64,7 @@ var removeLine = new BlockModifierDelegate(blockMod.RemoveLine);
 var blockTypes = new List<IBlockType>
 {
     new MarkdownBlockType(tagMap["SignedComment"].Pattern, tagMap),
+    new MarkdownBlockType(tagMap["SignedComment2"].Pattern, tagMap),
     new CodeBlockType(tagMap["NewCellBegin"].Pattern, tagMap) 
         { ModifierFunctions = 
             { 
@@ -81,9 +82,9 @@ var blockTypes = new List<IBlockType>
 
 
 
-var analyzer = new Analyzer(blockTypes);
+var analyzer = new NbAnalyzer(blockTypes);
 
-var blocks = analyzer.Analyze(inputFilePath);
+var blocks = analyzer.NbAnalyze(inputFilePath);
 
 foreach (var block in blocks)
 {

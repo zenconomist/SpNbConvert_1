@@ -8,7 +8,7 @@ public class Tag
 
     public bool ToRemove { get; set; } = true;
 
-    public string Type { get; set; }
+    public string Type { get; set; } = "markdown";
 
     public Tag(string tagString, Regex pattern)
     {

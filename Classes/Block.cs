@@ -6,7 +6,7 @@ public class Block
         public int ClosingLine { get; set; }
         public List<string> Lines { get; set; }
 
-        public string Name { get; set; }
+        public string Name { get; set; } = "";
 
         public int? BlockNumber { get; set; }
 

@@ -1,5 +1,4 @@
-/* 
-    BLocCom: ## Test2 Stored Procedure
+/* BlocCom: ## Test2 Stored Procedure
     This is an example stored procedure that demonstrates
     the use of various custom annotations for converting
     to a Jupyter notebook.
@@ -8,7 +7,7 @@
 CREATE PROCEDURE Test2
 AS
 BEGIN
-    -- BLocCom: ### Step 1: Create a Common Table Expression (CTE)
+    -- BlocCom: ### Step 1: Create a Common Table Expression (CTE)
 
     -- CodeBlocBegin_1
     WITH cte_example AS ( -- RemoveLine_Block_1
@@ -22,7 +21,7 @@ BEGIN
         -- DemoWhere: Where Column1 = 'example'
     --CodeBlocEnd_0
     )
-    -- BLocCom: ### Step 2: Insert data into a temporary table
+    -- BlocCom: ### Step 2: Insert data into a temporary table
     -- this temp table will be used in the final SELECT
 
 
@@ -37,9 +36,9 @@ BEGIN
     -- CodeBlocEnd_1
 
     /* 
-        BLocCom: ### Step 3: Perform a final SELECT
-        this is a line below a BLocCom
-        this is a second line below a BLocCom
+        BlocCom: ### Step 3: Perform a final SELECT
+        this is a line below a BlocCom
+        this is a second line below a BlocCom
     */
 
     /* 
@@ -57,9 +56,9 @@ BEGIN
         --CodeBlocEnd_5
     */
 
-    -- BLocCom: ### Step 3: Perform a final SELECT
-    -- this is a line below a BLocCom
-    -- this is a second line below a BLocCom
+    -- BlocCom: ### Step 3: Perform a final SELECT
+    -- this is a line below a BlocCom
+    -- this is a second line below a BlocCom
 
     -- CodeBlocBegin_2
     SELECT
@@ -76,8 +75,8 @@ BEGIN
     -- CodeBlocEnd_2
 
 
-    -- BLocCom: #### CTE example where 2 CTEs are used and a final SELECT is performed
-    -- BLocCom: This is a second line of BLocCom
+    -- BlocCom: #### CTE example where 2 CTEs are used and a final SELECT is performed
+    -- BlocCom: This is a second line of BlocCom
 
 
     -- CodeBlocBegin_3
