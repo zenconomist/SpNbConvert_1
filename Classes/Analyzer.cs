@@ -49,26 +49,33 @@ class NbAnalyzer
 
         return blocks;
     }
-    private int FindClosingLine(string[] lines, IBlockType blockType, Match openingPatternMatch, int openingLine)
+    public int FindClosingLine(string[] lines, IBlockType blockType, Match openingPatternMatch, int openingLine)
     {
         Regex closingPattern = blockType.GetClosingPattern(openingPatternMatch);
 
-        // Add this check to handle null closing patterns
-        if (closingPattern == null)
-        {
-            return -1;
-        }
-
         for (int i = openingLine + 1; i < lines.Length; i++)
         {
-            if (closingPattern.IsMatch(lines[i]))
+            if (closingPattern != null)
             {
-                return i;
+                Match match = closingPattern.Match(lines[i]);
+                if (match.Success)
+                {
+                    return i;
+                }
             }
+            // else
+            // {
+            //     Match match = blockType.Pattern.Match(lines[i]);
+            //     if (match.Success)
+            //     {
+            //         return i - 1;
+            //     }
+            // }
         }
 
         return -1;
     }
+
 
 
 }

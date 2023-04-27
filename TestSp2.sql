@@ -76,7 +76,7 @@ BEGIN
 
 
     -- BlocCom: #### CTE example where 2 CTEs are used and a final SELECT is performed
-    -- BlocCom: This is a second line of BlocCom
+    -- This is a second line of BlocCom
 
 
     -- CodeBlocBegin_3

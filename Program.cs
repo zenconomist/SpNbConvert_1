@@ -64,7 +64,7 @@ var removeLine = new BlockModifierDelegate(blockMod.RemoveLine);
 var blockTypes = new List<IBlockType>
 {
     new MarkdownBlockType(tagMap["SignedComment"].Pattern, tagMap),
-    new MarkdownBlockType(tagMap["SignedComment2"].Pattern, tagMap),
+    // new MarkdownBlockType(tagMap["SignedComment2"].Pattern, tagMap),
     new CodeBlockType(tagMap["NewCellBegin"].Pattern, tagMap) 
         { ModifierFunctions = 
             { 
